@@ -5,6 +5,8 @@
 </script>
 
 <svelte:head>
+	<link rel="icon" href={favicon} />
+
 	<title>Home</title>
 </svelte:head>
 
