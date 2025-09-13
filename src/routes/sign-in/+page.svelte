@@ -3,7 +3,7 @@
 </svelte:head>
 
 <div>
-    <h2>Вход</h2>
+    <h2>Аутентификация</h2>
 
     <form action="/sign-in"></form>
 </div>
