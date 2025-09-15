@@ -6,7 +6,9 @@ export const load: PageServerLoad = async ({ locals, fetch }) => {
         throw redirect(303, '/tasks')
     }
 
-    const query = `
+
+export const load: PageServerLoad = async ({ fetch }) => {
+     const query = `
         query GetDepartments {
             getDepartments {
                 description
