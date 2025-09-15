@@ -19,23 +19,23 @@
     <form action="?/register" method="POST" use:enhance>
         <div>
             <label for="email">Почта</label>
-            <input name="email" bind:value={email} type="text">
+            <input name="email" type="text" bind:value={email}>
         </div>
         <div>
             <label for="fullName">Полное имя</label>
-            <input name="fullName" bind:value={fullName} type="text">
+            <input name="fullName" type="text"  bind:value={fullName}>
         </div>
         <div>
             <label for="department">Отдел</label>
             <select name="department" id="department" bind:value={selectedDepartment}>
                 {#each data.departments as dep}
-                    <option value={dep.id} >{dep.description}</option>
+                    <option value={dep.id}>{dep.description}</option>
                 {/each}
             </select>
         </div>
         <div>
             <label for="password">Пароль</label>
-            <input name="password" bind:value={password} type="text">
+            <input name="password" type="password" bind:value={password}>
         </div>
 
         <button type="submit">Зарегистрироваться</button>

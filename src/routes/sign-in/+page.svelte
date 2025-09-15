@@ -1,3 +1,10 @@
+<script>
+    import {enhance} from "$app/forms";
+
+    let email = $state('');
+    let password = $state('');
+</script>
+
 <svelte:head>
     <title>Sign In</title>
 </svelte:head>
@@ -5,5 +12,16 @@
 <div>
     <h2>Вход</h2>
 
-    <form action="/sign-in"></form>
+    <form action="?/login" method="POST" use:enhance>
+        <div>
+            <label for="email">Почта</label>
+            <input name="email" type="text" bind:value={email}>
+        </div>
+        <div>
+            <label for="password">Пароль</label>
+            <input name="password" type="password" bind:value={password}>
+        </div>
+
+        <button type="submit">Войти в систему</button>
+    </form>
 </div>

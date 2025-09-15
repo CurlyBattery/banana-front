@@ -2,7 +2,7 @@ import type { Actions } from './$types';
 import { redirect, fail } from '@sveltejs/kit';
 
 export const actions = {
-    register: async ({ request }) => {
+    register: async ({ request, fetch }) => {
         const data = await request.formData();
         const email = data.get('email');
         const fullName = data.get('fullName');
