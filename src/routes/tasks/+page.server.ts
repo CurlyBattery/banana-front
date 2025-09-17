@@ -6,6 +6,9 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
     if (locals === undefined || !locals?.user ) {
         throw redirect(303, '/sign-in');
     }
+    if(locals?.user?.role === Role.ADMINISTRATOR) {
+        throw redirect(303, '/users');
+    }
     const accessToken = cookies.get('access_token');
     const queryMy = `
         query GetMyTasks {
