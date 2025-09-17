@@ -15,7 +15,6 @@ export const actions = {
         const fullName = data.get('fullName');
         const departmentId = Number(data.get('department'));
         const role = data.get('role');
-        console.log(role)
         const password = data.get('password');
 
         const mutation = `

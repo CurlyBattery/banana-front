@@ -1,15 +1,16 @@
 import type { PageServerLoad, Actions} from './$types'
 import {fail, redirect} from "@sveltejs/kit";
 
-export const load: PageServerLoad = async ({ cookies,   fetch }) => {
+export const load: PageServerLoad = async ({ cookies,   fetch, locals }) => {
     const accessToken = cookies.get('access_token');
     const query = `
         query GetUsers {
-            getUsers {
+            getUsers(query: { departmentId: ${locals?.user?.departmentId}, isActive: true }) {
                 departmentId
                 email
                 fullName
                 id
+                isActive
                 role
             }
         }
