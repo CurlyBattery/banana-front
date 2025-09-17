@@ -3,7 +3,7 @@ import {setClient} from "svelte-apollo";
 
 function createApolloClient() {
     const link = new HttpLink({
-        uri: "https://hasura.io/learn/graphql",
+        uri: "http://localhost:3000/graphql",
     });
 
     const cache = new InMemoryCache();

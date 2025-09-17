@@ -2,7 +2,6 @@ import type {Actions, PageServerLoad} from './$types';
 import { redirect, fail } from '@sveltejs/kit';
 
 export const load: PageServerLoad = ({ locals }) => {
-    console.log(locals)
     if (locals?.user) {
         throw redirect(303, '/tasks');
     }
@@ -52,7 +51,6 @@ export const actions = {
         });
 
         const result = await response.json();
-        console.log(result);
 
         if (result.errors) {
             console.error('GraphQL Errors:', result.errors);

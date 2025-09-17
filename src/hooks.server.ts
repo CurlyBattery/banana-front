@@ -8,7 +8,6 @@ export const handle: Handle = async ({event,  resolve}) => {
     event.locals.requestId = getUniqueId();
 
     const accessToken = event.cookies.get('access_token');
-    // console.log(accessToken)
     event.locals.user = null;
 
     if(accessToken) {
@@ -19,6 +18,7 @@ export const handle: Handle = async ({event,  resolve}) => {
                         fullName
                         email
                         departmentId
+                        role
                     }
                 }
             `;
@@ -34,7 +34,6 @@ export const handle: Handle = async ({event,  resolve}) => {
         });
 
         const result = await response.json();
-        console.log(result);
 
         if (result.errors) {
             console.error('GraphQL Errors:', result.errors);
