@@ -15,16 +15,19 @@ export const actions = {
         const email = data.get('email');
         const fullName = data.get('fullName');
         const departmentId = Number(data.get('department'));
+        const role = data.get('role');
+        console.log(role)
         const password = data.get('password');
 
         const mutation = `
-            mutation SignUp($email: String!, $fullName: String!, $departmentId: Int!, $password: String!) {
+            mutation SignUp($email: String!, $fullName: String!, $departmentId: Int!, $password: String!, $role: Role!) {
                 signUp(
                     createUserInput: {
                         email: $email
                         fullName: $fullName
                         departmentId: $departmentId
                         password: $password
+                        role: $role
                     }
                 ) {
                     id
@@ -32,6 +35,7 @@ export const actions = {
                     fullName
                     departmentId
                     isActive
+                    role
                 }
             }
         `;
@@ -43,7 +47,7 @@ export const actions = {
             },
             body: JSON.stringify({
                 query: mutation,
-                variables: { email, fullName, departmentId, password }
+                variables: { email, fullName, departmentId, password, role }
             })
         });
 

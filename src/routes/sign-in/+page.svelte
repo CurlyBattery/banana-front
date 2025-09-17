@@ -3,8 +3,6 @@
 
     let email = $state('');
     let password = $state('');
-
-    let { data } = $props();
 </script>
 
 <svelte:head>

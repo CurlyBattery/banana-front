@@ -5,6 +5,16 @@
     let fullName = $state('');
     let selectedDepartment = $state();
     let password = $state('');
+    let selectedRole = $state('MANAGER');
+
+    let roles = [
+      { value: 'HEAD_DEPARTMENT', name: 'Глава Отдела' },
+      { value: 'MANAGER', name: 'Менеджер' },
+      { value: 'SALESMAN', name: 'Продажник' },
+      { value: 'DEVELOPER', name: 'Разработчик' },
+      { value: 'ADMINISTRATOR', name: 'Администратор' },
+    ]
+
 
     let { data } = $props();
 </script>
@@ -30,6 +40,14 @@
             <select name="department" id="department" bind:value={selectedDepartment}>
                 {#each data.departments as dep}
                     <option value={dep.id} >{dep.description}</option>
+                {/each}
+            </select>
+        </div>
+        <div>
+            <label for="role">Роль</label>
+            <select name="role" id="role" bind:value={selectedRole}>
+                {#each roles as rol}
+                    <option value={rol.value}>{rol.name}</option>
                 {/each}
             </select>
         </div>
