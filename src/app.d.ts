@@ -1,5 +1,7 @@
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
+import type {Role} from "$lib/enums/role.enum";
+
 declare global {
 	namespace App {
 		// interface Error {}
@@ -10,6 +12,7 @@ declare global {
 				fullName: string,
 				email: string,
 				departmentId: number,
+				role: Role
 			} | null
 		}
 		// interface PageData {}

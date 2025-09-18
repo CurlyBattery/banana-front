@@ -1,5 +1,5 @@
 import {type Actions, fail, redirect} from "@sveltejs/kit";
-import type {PageServerLoad} from "../../../.svelte-kit/types/src/routes/$types";
+import type {PageServerLoad} from "./$types";
 
 export const load: PageServerLoad = ({ locals }) => {
     if (locals?.user) {
@@ -40,7 +40,6 @@ export const actions = {
         });
 
         const result = await response.json();
-        console.log(result)
 
         if (result.errors) {
             console.error('GraphQL Errors:', result.errors);

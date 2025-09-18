@@ -1,7 +1,9 @@
 <script lang="ts">
 	import favicon from '$lib/assets/favicon.svg';
+	import {Role} from "$lib/enums/role.enum";
 
 	let { children, data } = $props();
+	let isAdministrator = $state(data?.user?.role === Role.ADMINISTRATOR ?? null);
 </script>
 
 <svelte:head>
@@ -15,7 +17,10 @@
 		<a href="/">Logo</a>
 		<ul>
 			{#if data?.user !== null}
-				<li><a href="/tasks">Tasks</a></li>
+				{#if !isAdministrator}
+					<li><a href="/tasks">Tasks</a></li>
+					<li><a href="/#">Calendar</a></li>
+				{/if}
 				<form action="/logout" method="POST" style="display:inline" >
 					<button type="submit">Выйти</button>
 				</form>
