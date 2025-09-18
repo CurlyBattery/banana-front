@@ -81,5 +81,47 @@ export const actions = {
         }
 
         throw redirect(303, `/users`);
+    },
+    changeActive: async ({request, cookies}) => {
+        const accessToken = cookies.get('access_token');
+        const data = await request.formData();
+        let active = data.get('active') === "true";
+        let userId = data.get('id');
+
+        const mutation = `
+            mutation UpdateUser($isActive: Boolean, $id: Int!) {
+                updateUser(
+                    updateUserInput: { isActive: $isActive, id: $id }
+                        ) {
+                            departmentId
+                            email
+                            fullName
+                            id
+                            isActive
+                        }
+                    }
+        `;
+
+        const response = await fetch('http://localhost:3000/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Cookie': `access_token=${accessToken}`,
+            },
+            body: JSON.stringify({
+                query: mutation,
+                variables: { isActive: Boolean(active), id: Number(userId)}
+            })
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        if(result.errors) {
+            console.error('GraphQL Errors:', result.errors);
+            return fail(400, { error: result.errors[0].message });
+        }
+
+        throw redirect(303, `/users`);
     }
 } satisfies Actions

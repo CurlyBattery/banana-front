@@ -38,8 +38,6 @@
                     {/each}
                 </select>
             </form>
-
-
         </div>
     {:else}
         <p>Статус - {data.task.status}</p>
