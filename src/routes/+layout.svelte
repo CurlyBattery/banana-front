@@ -132,7 +132,7 @@
 		margin-top: auto;
 		padding: .5em 1.2em;
 		border-radius: 30px;
-		border: 1px solid #ce4141;
+		border: 3px solid #ce4141;
 		background-color: #ce4141;
 		font-family: "VAG World", sans-serif;
 		font-weight: bold;
@@ -141,7 +141,6 @@
 	}
 
 	form button:hover {
-		border-color: #ce4141;
 		background-color: rgba(255, 255, 255, 0);
 		cursor: pointer;
 	}
