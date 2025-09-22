@@ -14,27 +14,27 @@
     <title>New Task</title>
 </svelte:head>
 
-<div>
+<div class="new-task-container">
     <h2>Выставление новой задачи</h2>
 
     <form action="?/createTask" method="POST" use:enhance>
-        <div>
+        <div class="task-box">
             <label for="title">Заголовок</label>
             <input name="title" type="text" bind:value={title}>
         </div>
-        <div>
+        <div class="task-box">
             <label for="description">Описание задачи</label>
             <input name="description" type="text" bind:value={description}>
         </div>
-        <div>
+        <div class="task-box">
             <label for="priority">Приоритет</label>
             <input name="priority" type="number" bind:value={priority}>
         </div>
-        <div>
+        <div class="task-box">
             <label for="deadline">Дедлайн</label>
             <input name="deadline" type="datetime-local" bind:value={deadline}>
         </div>
-        <div>
+        <div class="task-box">
             <label for="user">Работник</label>
             <select name="user" id="user" bind:value={selectedUser}>
                 {#each data.users as us}
@@ -43,6 +43,14 @@
             </select>
         </div>
 
-        <button type="submit">Сохранить</button>
+        <button type="submit" class="save-btn">Сохранить</button>
     </form>
 </div>
+
+
+<style>
+    .new-task-container {
+        display: flex;
+        flex-direction: column;
+    }
+</style>

@@ -18,19 +18,19 @@
 <header>
 	<nav>
 		<div class="logo-container">
-			<a href="/"><img src={logo}></a>
+			<a href="/"><img alt="Логотип банановый" src={logo}></a>
 		</div>
 		<ul>
 			{#if data?.user !== null}
 				{#if !isAdministrator}
-					<li><a href="/tasks">Tasks</a></li>
-					<li><a href="/#">Calendar</a></li>
-					<li><a href="/notifications">Notifications <span>{countNotifications}</span></a></li>
+					<li><a href="/tasks">Задачи</a></li>
+					<li><a href="/#">Календарь</a></li>
+					<li><a href="/notifications">Уведомления <span>{countNotifications}</span></a></li>
 				{/if}
 
 			{:else}
-				<li><a href="/sign-up">Start Now</a></li>
-				<li><a href="/sign-in">Sign In</a></li>
+				<li><a href="/sign-up">Начать</a></li>
+				<li><a href="/sign-in">Войти</a></li>
 			{/if}
 		</ul>
 		{#if data?.user !== null}
