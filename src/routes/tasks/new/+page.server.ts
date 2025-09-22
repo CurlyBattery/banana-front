@@ -1,7 +1,14 @@
 import type { PageServerLoad, Actions} from './$types'
 import {fail, redirect} from "@sveltejs/kit";
+import {Role} from "$lib/enums/role.enum";
 
 export const load: PageServerLoad = async ({ cookies,   fetch, locals }) => {
+    if (locals === undefined || !locals?.user ) {
+        throw redirect(303, '/sign-in');
+    }
+    if(locals?.user?.role === Role.ADMINISTRATOR) {
+        throw redirect(303, '/users');
+    }
     const accessToken = cookies.get('access_token');
     const query = `
         query GetUsers {

@@ -103,6 +103,9 @@
         font-size: 1em;
         transition: all 0.3s;
     }
+    .user-box select option{
+        color: black;
+    }
 
     .user-box input[type="text"]:focus,
     .user-box input[type="email"]:focus,
