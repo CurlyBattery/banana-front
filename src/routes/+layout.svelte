@@ -4,6 +4,8 @@
 
 	let { children, data } = $props();
 	let isAdministrator = $state(data?.user?.role === Role.ADMINISTRATOR ?? null);
+
+	let countNotifications = $state(data.notifications?.filter((item) => item.isRead === false)?.length);
 </script>
 
 <svelte:head>
@@ -20,6 +22,7 @@
 				{#if !isAdministrator}
 					<li><a href="/tasks">Tasks</a></li>
 					<li><a href="/#">Calendar</a></li>
+					<li><a href="/notifications">Notifications <span>{countNotifications}</span></a></li>
 				{/if}
 				<form action="/logout" method="POST" style="display:inline" >
 					<button type="submit">Выйти</button>
