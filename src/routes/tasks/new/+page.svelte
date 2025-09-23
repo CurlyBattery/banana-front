@@ -52,7 +52,7 @@
     .new-task-container {
         display: flex;
         flex-direction: column;
-        min-height: 100vh;
+        padding: 2rem;
     }
 
     h2 {
@@ -87,6 +87,10 @@
     }
 
     .task-box select option{
+        color: black;
+    }
+
+    .task-box select:focus{
         color: black;
     }
 

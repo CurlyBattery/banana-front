@@ -1,6 +1,5 @@
 <script lang="ts">
   import { Role } from "$lib/enums/role.enum";
-  import { goto } from "$app/navigation";
 
   let { data } = $props();
   const isHead = data.user.role === Role.HEAD_DEPARTMENT;
@@ -49,7 +48,7 @@
     .tasks-container {
         display: flex;
         flex-direction: column;
-        min-height: 100vh;
+        padding: 2rem;
     }
 
     .tasks-container p{
@@ -60,8 +59,32 @@
     h2 {
         font-size: 2.5em;
         font-weight: 800;
-        color: rgba(255, 255, 255, 0.7);
+        background: linear-gradient(
+                270deg,
+                #ff6ec4,
+                #7873f5,
+                #42e695,
+                #f0ba3a,
+                #ff6ec4
+        );
+        background-size: 1000% 1000%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient-flow 10s ease infinite;
     }
+
+    @keyframes gradient-flow {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
 
     .task-list {
         padding: 0;
@@ -69,6 +92,8 @@
         display: flex;
         flex-direction: column;
         row-gap: 15px;
+        flex: 1 1 auto; /* растягивается по вертикали */
+        overflow-y: auto; /* скролл при переполнении */
     }
 
     .task-card {
@@ -146,7 +171,7 @@
     .search-container input[type="search"]{
         padding: 1em;
         border-radius: 10px;
-        background: #cccccc;
+        background: #eaeaea;
         border: none;
     }
 
@@ -154,8 +179,8 @@
         padding: 1em;
         border: none;
         border-radius: 5px;
-        background: greenyellow;
-        color: rgba(0, 0, 0, 0.48);
+        background: #8DC63F;
+        color: rgb(255, 255, 255);
     }
 
     .search-container button:hover {

@@ -63,10 +63,9 @@
 
 	.main-container {
 		margin-left: 250px;
-		padding: 30px;
 		background-color: rgb(22, 22, 22);
 		color: white;
-		box-sizing: border-box;
+		min-height: 100vh;
 	}
 
 	nav {
