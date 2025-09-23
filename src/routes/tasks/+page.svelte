@@ -13,14 +13,12 @@
 <div class="tasks-container">
     <p>Привет 👋</p>
     <h2>{isHead ? `Задачи от руководителя: ${data.user.fullName}` : `Задачи для сотрудника: ${data.user.fullName}`}</h2>
-    <form>
-        <div>
+    <form class="search-container">
             <input type="search" id="mySearch" name="q"  placeholder="Поиск задач..."/>
             <button>Search</button>
             <a href="/tasks">
                 <button>Очистить</button>
             </a>
-        </div>
     </form>
     {#if data.tasks.length !== 0}
         <ul class="task-list">
@@ -139,5 +137,29 @@
         cursor: pointer;
         background-color: #8DC63F;
         box-shadow: 0 0 20px #8DC63F;
+    }
+
+    .search-container {
+        margin: 1em 0;
+    }
+
+    .search-container input[type="search"]{
+        padding: 1em;
+        border-radius: 10px;
+        background: #cccccc;
+        border: none;
+    }
+
+    .search-container button {
+        padding: 1em;
+        border: none;
+        border-radius: 5px;
+        background: greenyellow;
+        color: rgba(0, 0, 0, 0.48);
+    }
+
+    .search-container button:hover {
+        cursor: pointer;
+        box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.5) inset;
     }
 </style>
