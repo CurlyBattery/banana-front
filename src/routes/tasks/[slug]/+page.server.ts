@@ -49,8 +49,10 @@ export const load: PageServerLoad = async ({ cookies, locals, params }) => {
 export const actions = {
     changeStatus: async ({ request, cookies, params }) => {
         const accessToken = cookies.get('access_token');
+        console.log(accessToken)
         const data = await request.formData();
         let status = data.get('status');
+        console.log(status)
 
         const mutation = `
             mutation UpdateTaskStatus($id: Int!, $status: TaskStatus!) {
