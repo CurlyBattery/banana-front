@@ -1,8 +1,9 @@
-<script>
-    import {Role} from "$lib/enums/role.enum";
+<script lang="ts">
+  import { Role } from "$lib/enums/role.enum";
+  import { goto } from "$app/navigation";
 
-    let { data } = $props();
-    const isHead = data.user.role === Role.HEAD_DEPARTMENT;
+  let { data } = $props();
+  const isHead = data.user.role === Role.HEAD_DEPARTMENT;
 </script>
 
 <svelte:head>
@@ -12,6 +13,15 @@
 <div class="tasks-container">
     <p>Привет 👋</p>
     <h2>{isHead ? `Задачи от руководителя: ${data.user.fullName}` : `Задачи для сотрудника: ${data.user.fullName}`}</h2>
+    <form>
+        <div>
+            <input type="search" id="mySearch" name="q"  placeholder="Поиск задач..."/>
+            <button>Search</button>
+            <a href="/tasks">
+                <button>Очистить</button>
+            </a>
+        </div>
+    </form>
     {#if data.tasks.length !== 0}
         <ul class="task-list">
             {#each data.tasks as task}
@@ -36,10 +46,12 @@
     {/if}
 </div>
 
+
 <style>
     .tasks-container {
         display: flex;
         flex-direction: column;
+        min-height: 100vh;
     }
 
     .tasks-container p{
@@ -76,6 +88,7 @@
         color: inherit;
         transition: all 0.3s;
         border-radius: 15px;
+
     }
 
     .task-link:hover {
