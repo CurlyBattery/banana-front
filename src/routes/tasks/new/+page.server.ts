@@ -1,6 +1,8 @@
 import type { PageServerLoad, Actions} from './$types'
 import {fail, redirect} from "@sveltejs/kit";
 import {Role} from "$lib/enums/role.enum";
+import {formatInTimeZone} from "date-fns-tz";
+import {parseISO} from "date-fns";
 
 export const load: PageServerLoad = async ({ cookies,   fetch, locals }) => {
     if (locals === undefined || !locals?.user ) {
@@ -48,7 +50,7 @@ export const actions = {
     createTask: async ({ request, cookies }) => {
         const accessToken = cookies.get('access_token');
         const data = await request.formData();
-        let deadline = data.get('deadline');
+        let deadline = formatInTimeZone(parseISO(data.get('deadline') as string), 'UTC', 'yyyy-MM-dd');
         let assignedToId = Number(data.get('user'));
         let description = data.get('description');
         let priority = Number(data.get('priority'));

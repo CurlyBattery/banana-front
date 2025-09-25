@@ -22,6 +22,7 @@ export const load: PageServerLoad = async ({ cookies, locals, url }) => {
                 priority
                 status
                 title
+                createdAt
             }
         }
     `;
@@ -37,6 +38,7 @@ export const load: PageServerLoad = async ({ cookies, locals, url }) => {
                 priority
                 status
                 title
+                createdAt
             }
         }
     `;

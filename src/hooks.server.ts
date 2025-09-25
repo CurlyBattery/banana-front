@@ -1,12 +1,6 @@
 import {fail, type Handle} from "@sveltejs/kit";
 
-const getUniqueId = () => {
-    return Math.random().toString(36).substr(2, 9);
-}
-
 export const handle: Handle = async ({event,  resolve}) => {
-    event.locals.requestId = getUniqueId();
-
     const accessToken = event.cookies.get('access_token');
     event.locals.user = null;
 

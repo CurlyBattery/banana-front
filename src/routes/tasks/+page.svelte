@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Role } from "$lib/enums/role.enum";
   import { format, parseISO} from 'date-fns'
+  import {  formatInTimeZone } from 'date-fns-tz';
 
   let { data } = $props();
   const isHead = data.user.role === Role.HEAD_DEPARTMENT;
@@ -28,7 +29,7 @@
                         <h3>{task.title}</h3>
                         <div class="task-body">
                             <p>{task.description}</p>
-                            <span>{format(parseISO(task.deadline), "yyyy-MM-dd HH:mm")}</span>
+                            <span>с {format(parseISO(task.createdAt),  'yyyy-MM-dd')} по {formatInTimeZone(parseISO(task.deadline), 'UTC', 'yyyy-MM-dd')}</span>
                         </div>
                     </a>
                 </li>
