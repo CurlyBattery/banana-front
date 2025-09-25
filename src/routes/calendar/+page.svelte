@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import { Calendar } from "@fullcalendar/core";
     import dayGridPlugin from "@fullcalendar/daygrid";
+    import timeGridPlugin from "@fullcalendar/timegrid";
     import interactionPlugin from "@fullcalendar/interaction";
     import {format, parseISO} from "date-fns";
     import { invalidateAll} from "$app/navigation";
@@ -12,25 +13,28 @@
     const isHead = data.user.role === Role.HEAD_DEPARTMENT;
 
     let events = data.tasks.map((task ) => {
+        console.log(new Date(task.createdAt).toISOString())
+        console.log(new Date(task.deadline).toISOString())
         return {
             id: task.id,
             title: task.title,
-            start: format(parseISO(task.createdAt), "yyyy-MM-dd"),
-            end: format(parseISO(task.deadline), "yyyy-MM-dd"),
+            start: format(parseISO(task.createdAt), "yyyy-MM-dd'T'HH:mm:ss"),
+            end: format(parseISO(task.deadline), "yyyy-MM-dd'T'HH:mm:ss"),
+            allDay: false
         }
     })
+    console.log(events)
 
     onMount(() => {
         const calendar = new Calendar(calendarEl, {
-            plugins: [dayGridPlugin, interactionPlugin],
-            initialView: "dayGridMonth",
+            plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
+            initialView: "timeGridWeek",
             editable: isHead,
             eventResizableFromStart: true,
             events,
             eventDrop: async (info) => {
                 const task = data.tasks.find(t => t.id === Number(info.event.id));
                 if (!task) return;
-                console.log(info.event.end?.toISOString())
                 const formData = new FormData();
                 formData.set('id', task.id.toString());
                 formData.set('title', info.event.title);
@@ -62,6 +66,10 @@
         calendar.render();
     });
 </script>
+
+<svelte:head>
+    <title>Calendar</title>
+</svelte:head>
 
 <div bind:this={calendarEl}></div>
 

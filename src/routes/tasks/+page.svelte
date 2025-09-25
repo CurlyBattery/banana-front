@@ -29,7 +29,7 @@
                         <h3>{task.title}</h3>
                         <div class="task-body">
                             <p>{task.description}</p>
-                            <span>с {format(parseISO(task.createdAt),  'yyyy-MM-dd')} по {formatInTimeZone(parseISO(task.deadline), 'UTC', 'yyyy-MM-dd')}</span>
+                            <span>с {format(parseISO(task.createdAt), "yyyy-MM-dd'T'HH:mm:ss")} по {format(parseISO(task.deadline), "yyyy-MM-dd'T'HH:mm:ss")}</span>
                         </div>
                     </a>
                 </li>
