@@ -24,7 +24,7 @@
 			{#if data?.user !== null}
 				{#if !isAdministrator}
 					<li><a href="/tasks">Задачи</a></li>
-					<li><a href="/#">Календарь</a></li>
+					<li><a href="/calendar">Календарь</a></li>
 					<li><a href="/notifications">Уведомления <span>{countNotifications}</span></a></li>
 				{/if}
 

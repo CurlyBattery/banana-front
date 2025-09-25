@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Role } from "$lib/enums/role.enum";
+  import { format, parseISO} from 'date-fns'
 
   let { data } = $props();
   const isHead = data.user.role === Role.HEAD_DEPARTMENT;
@@ -25,7 +26,10 @@
                 <li class="task-card">
                     <a href={`/tasks/${task.id}`} class="task-link">
                         <h3>{task.title}</h3>
-                        <p>{task.description}</p>
+                        <div class="task-body">
+                            <p>{task.description}</p>
+                            <span>{format(parseISO(task.deadline), "yyyy-MM-dd HH:mm")}</span>
+                        </div>
                     </a>
                 </li>
             {/each}
@@ -92,8 +96,8 @@
         display: flex;
         flex-direction: column;
         row-gap: 15px;
-        flex: 1 1 auto; /* растягивается по вертикали */
-        overflow-y: auto; /* скролл при переполнении */
+        flex: 1 1 auto;
+        overflow-y: auto;
     }
 
     .task-card {
@@ -125,11 +129,27 @@
         color: rgba(240, 186, 58, 0.8);
     }
 
-    .task-link p {
+
+    .task-body {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .task-body p {
         font-size: 1em;
         line-height: 1.4em;
         color: rgba(221, 221, 221, 0.7);
     }
+
+    .task-body span {
+        font-size: .8em;
+        line-height: 1.4em;
+        color: rgba(221, 221, 221, 0.7);
+    }
+
+
 
     .empty-tasks {
         margin-top: 2em;
