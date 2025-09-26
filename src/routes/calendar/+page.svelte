@@ -13,8 +13,6 @@
     const isHead = data.user.role === Role.HEAD_DEPARTMENT;
 
     let events = data.tasks.map((task ) => {
-        console.log(new Date(task.createdAt).toISOString())
-        console.log(new Date(task.deadline).toISOString())
         return {
             id: task.id,
             title: task.title,
@@ -23,7 +21,6 @@
             allDay: false
         }
     })
-    console.log(events)
 
     onMount(() => {
         const calendar = new Calendar(calendarEl, {

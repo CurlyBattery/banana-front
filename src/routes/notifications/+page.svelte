@@ -1,5 +1,8 @@
 <script>
+  import {notifications} from "$lib/stores/notifications.js";
+
   const {data} = $props();
+
 </script>
 
 <svelte:head>
@@ -9,9 +12,9 @@
 <div class="notifications-container">
     <h2 class="title">🔔 Уведомления</h2>
 
-    {#if data.notifications.length !== 0}
+    {#if $notifications.length !== 0}
         <ul class="notification-list">
-            {#each data.notifications as notification}
+            {#each $notifications as notification}
                 <li class="notification-card">
                     <div class="notification-header">
                         <h4>{notification.title}</h4>
