@@ -12,6 +12,7 @@ export const load: PageServerLoad = async ({ cookies, locals, params }) => {
                 assignedToId
                 createdById
                 deadline
+                deadline
                 description
                 id
                 priority

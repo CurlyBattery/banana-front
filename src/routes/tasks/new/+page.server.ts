@@ -50,6 +50,7 @@ export const actions = {
     createTask: async ({ request, cookies }) => {
         const accessToken = cookies.get('access_token');
         const data = await request.formData();
+        let start = data.get('start');
         let deadline = data.get('deadline');
         let assignedToId = Number(data.get('user'));
         let description = data.get('description');
@@ -57,10 +58,11 @@ export const actions = {
         let title = data.get('title');
 
         const mutation = `
-            mutation CreateTask($deadline: DateTime!, $assignedToId: Int!, $description: String!, $priority: Int!, $title: String!) {
+            mutation CreateTask($deadline: DateTime!, $start: DateTime!, $assignedToId: Int!, $description: String!, $priority: Int!, $title: String!) {
                  createTask(
                     createTaskInput: {
                         assignedToId: $assignedToId
+                        start: $start
                         deadline: $deadline
                         description: $description
                         priority: $priority
@@ -69,6 +71,7 @@ export const actions = {
                 ) {
                     assignedToId
                     createdById
+                    start
                     deadline
                     description
                     id
@@ -87,7 +90,7 @@ export const actions = {
             },
             body: JSON.stringify({
                 query: mutation,
-                variables: { deadline, assignedToId, description, priority, title }
+                variables: { deadline, start, assignedToId, description, priority, title }
             })
         });
 

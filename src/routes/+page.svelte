@@ -2,11 +2,15 @@
     export let data;
 </script>
 
+<svelte:head>
+    <title>Домашняя страница</title>
+</svelte:head>
+
 
 <div class="home-container">
     <p></p>
     <h1>Добро пожаловать, на платформу для отслеживания прогресса выполнения задач</h1>
-    <p>🫶🫶🫶</p>
+    <p>🫰🫰🫰</p>
 </div>
 
 <style>

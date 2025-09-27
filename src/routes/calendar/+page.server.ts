@@ -16,13 +16,13 @@ export const load: PageServerLoad = async ({ cookies, locals, url }) => {
             getMyTasks {
                 assignedToId
                 createdById
+                start
                 deadline
                 description
                 id
                 priority
                 status
                 title
-                createdAt
             }
         }
     `;
@@ -32,13 +32,13 @@ export const load: PageServerLoad = async ({ cookies, locals, url }) => {
             getCreatorTasks {
                 assignedToId
                 createdById
+                start
                 deadline
                 description
                 id
                 priority
                 status
                 title
-                createdAt
             }
         }
     `;
@@ -55,7 +55,6 @@ export const load: PageServerLoad = async ({ cookies, locals, url }) => {
     })
 
     const result = await response.json();
-    console.log(result)
 
     if(result.errors) {
         console.error('GraphQL Errors:', result.errors)
@@ -75,8 +74,8 @@ export const actions = {
         const title = data.get('title');
         const description = data.get('description');
         const priority = data.get('priority');
+        const start = data.get('start');
         const deadline = data.get('deadline');
-        const createdAt = data.get('createdAt');
 
         const accessToken = cookies.get('access_token');
 
@@ -85,8 +84,8 @@ export const actions = {
                 updateTask(updateTaskInput: $updateTaskInput) {
                     id
                     title
+                    start
                     deadline
-                    createdAt
                 }
             }
         `;
@@ -97,8 +96,8 @@ export const actions = {
                 title,
                 description,
                 priority: Number(priority),
+                start,
                 deadline,
-                createdAt,
             }
         };
 
@@ -114,7 +113,6 @@ export const actions = {
             })
         });
 
-        console.log(variables)
         const result = await response.json();
         if(result.errors) {
             console.error('GraphQL Error:', result.errors);

@@ -2,17 +2,37 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import logo from '$lib/assets/logo.png';
 	import {Role} from "$lib/enums/role.enum";
+	import {notifications, unreadCount} from "$lib/stores/notifications.js";
+	import {onMount} from "svelte";
+	import {io} from "socket.io-client";
 
 	let { children, data } = $props();
 	let isAdministrator = $state(data?.user?.role === Role.ADMINISTRATOR ?? null);
 
-	let countNotifications = $state(data.notifications?.filter((item) => item.isRead === false)?.length);
+	$effect(() => {
+		if (data?.notifications) {
+			notifications.set(data.notifications);
+		}
+	});
+
+	onMount(() => {
+		if (!data?.user?.id) return;
+
+		const socket = io("http://localhost:3000", { transports: ["websocket"] });
+		socket.emit("join", { room: `user` });
+
+		socket.on("notification", (notif) => {
+			notifications.update(n => [notif, ...n]);
+		});
+
+		return () => socket.disconnect();
+	});
 </script>
+
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
 
-	<title>Home</title>
 </svelte:head>
 
 <header>
@@ -25,7 +45,7 @@
 				{#if !isAdministrator}
 					<li><a href="/tasks">Задачи</a></li>
 					<li><a href="/calendar">Календарь</a></li>
-					<li><a href="/notifications">Уведомления <span>{countNotifications}</span></a></li>
+					<li><a href="/notifications">Уведомления <span>{$unreadCount}</span></a></li>
 				{/if}
 
 			{:else}
@@ -103,7 +123,7 @@
 	}
 
 	li {
-		padding: .5em;
+		padding: .3em .5em;
 		border-radius: 5px;
 		background-color: #F0BA3A;
 		border: 0.2em solid #F0BA3A ;

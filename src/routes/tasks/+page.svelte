@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-    <title>Tasks</title>
+    <title>Задачи</title>
 </svelte:head>
 
 <div class="tasks-container">
@@ -29,7 +29,7 @@
                         <h3>{task.title}</h3>
                         <div class="task-body">
                             <p>{task.description}</p>
-                            <span>с {format(parseISO(task.createdAt), "yyyy-MM-dd'T'HH:mm:ss")} по {format(parseISO(task.deadline), "yyyy-MM-dd'T'HH:mm:ss")}</span>
+                            <span>с {format(parseISO(task.start), "yyyy-MM-dd, HH:mm:ss")} по {format(parseISO(task.deadline), "yyyy-MM-dd, HH:mm")}</span>
                         </div>
                     </a>
                 </li>

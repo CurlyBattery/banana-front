@@ -13,17 +13,14 @@
     const isHead = data.user.role === Role.HEAD_DEPARTMENT;
 
     let events = data.tasks.map((task ) => {
-        console.log(new Date(task.createdAt).toISOString())
-        console.log(new Date(task.deadline).toISOString())
         return {
             id: task.id,
             title: task.title,
-            start: format(parseISO(task.createdAt), "yyyy-MM-dd'T'HH:mm:ss"),
+            start: format(parseISO(task.start), "yyyy-MM-dd'T'HH:mm:ss"),
             end: format(parseISO(task.deadline), "yyyy-MM-dd'T'HH:mm:ss"),
             allDay: false
         }
     })
-    console.log(events)
 
     onMount(() => {
         const calendar = new Calendar(calendarEl, {
@@ -40,8 +37,8 @@
                 formData.set('title', info.event.title);
                 formData.set('description', task.description);
                 formData.set('priority', task.priority.toString());
+                formData.set('start', info.event.start?.toISOString() ?? '');
                 formData.set('deadline', info.event.end?.toISOString() ?? '');
-                formData.set('createdAt', info.event.start?.toISOString() ?? '');
 
                 await fetch('?/updateTask', { method: 'POST', body: formData });
                 await invalidateAll();
@@ -55,8 +52,8 @@
                 formData.set('title', info.event.title);
                 formData.set('description', task.description);
                 formData.set('priority', task.priority.toString());
+                formData.set('start', info.event.start?.toISOString() ?? '');
                 formData.set('deadline', info.event.end?.toISOString() ?? '');
-                formData.set('createdAt', info.event.start?.toISOString() ?? '');
 
                 await fetch('?/updateTask', { method: 'POST', body: formData });
                 await invalidateAll();

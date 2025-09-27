@@ -2,6 +2,7 @@
     import {Role} from "$lib/enums/role.enum.js";
     import {TaskStatus} from "$lib/enums/task-status.enum.js";
     import {enhance} from "$app/forms";
+    import {format, parseISO} from "date-fns";
 
     let { data } = $props();
     const isHead = data.user.role === Role.HEAD_DEPARTMENT;
@@ -25,7 +26,7 @@
   <div class="task-card">
      <div class="task-header">
          <h2>{data.task.title}</h2>
-         <span class="task-deadline">Дедлайн - {data.task.deadline}</span>
+         <span class="task-deadline">Дедлайн - {format(parseISO(data.task.deadline), "yyyy-MM-dd")}</span>
      </div>
 
       <p class="task-description">{data.task.description}</p>

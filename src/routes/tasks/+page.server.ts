@@ -16,13 +16,13 @@ export const load: PageServerLoad = async ({ cookies, locals, url }) => {
             getMyTasks(search: $search) {
                 assignedToId
                 createdById
+                start
                 deadline
                 description
                 id
                 priority
                 status
                 title
-                createdAt
             }
         }
     `;
@@ -32,18 +32,17 @@ export const load: PageServerLoad = async ({ cookies, locals, url }) => {
             getCreatorTasks(search: $search) {
                 assignedToId
                 createdById
+                start
                 deadline
                 description
                 id
                 priority
                 status
                 title
-                createdAt
             }
         }
     `;
     const search = url.searchParams.get('q');
-    console.log(search)
     if (!search) {
         const response = await fetch('http://localhost:3000/graphql', {
             method: 'POST',
@@ -79,7 +78,6 @@ export const load: PageServerLoad = async ({ cookies, locals, url }) => {
     })
 
     const result = await response.json();
-    console.log(result)
 
     if(result.errors) {
         console.error('GraphQL Errors:', result.errors)
