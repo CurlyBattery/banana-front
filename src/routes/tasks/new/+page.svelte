@@ -4,6 +4,7 @@
     let title = $state('');
     let description = $state('');
     let priority = $state();
+    let start = $state();
     let deadline = $state();
     let selectedUser = $state();
 
@@ -11,7 +12,7 @@
 </script>
 
 <svelte:head>
-    <title>New Task</title>
+    <title>Новая задача</title>
 </svelte:head>
 
 <div class="new-task-container">
@@ -29,6 +30,10 @@
         <div class="task-box">
             <label for="priority">Приоритет</label>
             <input name="priority" type="number" bind:value={priority}>
+        </div>
+        <div class="task-box">
+            <label for="start">Начало</label>
+            <input name="start" type="datetime-local" bind:value={start}>
         </div>
         <div class="task-box">
             <label for="deadline">Дедлайн</label>

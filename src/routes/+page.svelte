@@ -2,6 +2,10 @@
     export let data;
 </script>
 
+<svelte:head>
+    <title>Домашняя страница</title>
+</svelte:head>
+
 
 <div class="home-container">
     <p></p>

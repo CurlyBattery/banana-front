@@ -33,7 +33,6 @@
 <svelte:head>
 	<link rel="icon" href={favicon} />
 
-	<title>Home</title>
 </svelte:head>
 
 <header>
@@ -124,7 +123,7 @@
 	}
 
 	li {
-		padding: .5em;
+		padding: .3em .5em;
 		border-radius: 5px;
 		background-color: #F0BA3A;
 		border: 0.2em solid #F0BA3A ;

@@ -16,13 +16,13 @@ export const load: PageServerLoad = async ({ cookies, locals, url }) => {
             getMyTasks(search: $search) {
                 assignedToId
                 createdById
+                start
                 deadline
                 description
                 id
                 priority
                 status
                 title
-                createdAt
             }
         }
     `;
@@ -32,13 +32,13 @@ export const load: PageServerLoad = async ({ cookies, locals, url }) => {
             getCreatorTasks(search: $search) {
                 assignedToId
                 createdById
+                start
                 deadline
                 description
                 id
                 priority
                 status
                 title
-                createdAt
             }
         }
     `;
