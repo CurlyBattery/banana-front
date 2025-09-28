@@ -765,6 +765,18 @@ svelte-check@^4.0.0:
     picocolors "^1.0.0"
     sade "^1.7.4"
 
+svelte-french-toast@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/svelte-french-toast/-/svelte-french-toast-1.2.0.tgz#bfe3696ee1e3cbdee2a300e0153dede7d6d802eb"
+  integrity sha512-5PW+6RFX3xQPbR44CngYAP1Sd9oCq9P2FOox4FZffzJuZI2mHOB7q5gJBVnOiLF5y3moVGZ7u2bYt7+yPAgcEQ==
+  dependencies:
+    svelte-writable-derived "^3.1.0"
+
+svelte-writable-derived@^3.1.0:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/svelte-writable-derived/-/svelte-writable-derived-3.1.1.tgz#03222b32f8a66ea503e95b3cce8b94bec0810044"
+  integrity sha512-w4LR6/bYZEuCs7SGr+M54oipk/UQKtiMadyOhW0PTwAtJ/Ai12QS77sLngEcfBx2q4H8ZBQucc9ktSA5sUGZWw==
+
 svelte@^5.0.0:
   version "5.38.7"
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-5.38.7.tgz#8dd076599908ac19e431529241a87528292b7a1b"
