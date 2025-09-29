@@ -1,5 +1,6 @@
 <script>
     import {enhance} from "$app/forms";
+    import toast from "svelte-french-toast";
 
     let email = $state('');
     let fullName = $state('');
@@ -16,7 +17,13 @@
     ]
 
 
-    let { data } = $props();
+    let { data, form } = $props();
+
+    $effect(() => {
+        if(form?.error) {
+            toast.error(form.error)
+        }
+    })
 </script>
 
 <svelte:head>

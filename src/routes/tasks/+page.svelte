@@ -190,14 +190,14 @@
     }
 
     .search-container input[type="search"]{
-        padding: 1em;
+        padding: .6em 1em;
         border-radius: 10px;
         background: #eaeaea;
         border: none;
     }
 
     .search-container button {
-        padding: 1em;
+        padding: .6em 1em;
         border: none;
         border-radius: 5px;
         background: #8DC63F;
@@ -206,6 +206,6 @@
 
     .search-container button:hover {
         cursor: pointer;
-        box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.5) inset;
+        box-shadow: 0 0 5px 5px rgba(0,0,0,0.2) inset;
     }
 </style>

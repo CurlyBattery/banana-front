@@ -5,6 +5,7 @@
 	import {notifications, unreadCount} from "$lib/stores/notifications.js";
 	import {onMount} from "svelte";
 	import {io} from "socket.io-client";
+	import {Toaster} from 'svelte-french-toast'
 
 	let { children, data } = $props();
 	let isAdministrator = $state(data?.user?.role === Role.ADMINISTRATOR ?? null);
@@ -32,8 +33,9 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-
 </svelte:head>
+
+<Toaster position="top-right"/>
 
 <header>
 	<nav>
